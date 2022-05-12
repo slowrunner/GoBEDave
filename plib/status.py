@@ -41,6 +41,10 @@ def getCPUtemperature():
     res = os.popen('vcgencmd measure_temp').readline()
     return(res.replace("temp=", "").replace("\n", ""))
 
+# Return memory and swap
+def getFree():
+    res = os.popen('free -m').read()
+    return res
 
 # Return Clock Freq as a character string
 def getClockFreq():
@@ -74,7 +78,7 @@ def printStatus():
     print("Processor Temp: %s" % getCPUtemperature())
     print("Clock Frequency: %s" % getClockFreq())
     print("%s" % getThrottled())
-
+    print("Memory: ", getFree()[9:])
 
 # ##### MAIN ######
 
@@ -98,9 +102,10 @@ def main():
     try:
         while True:
                 printStatus()
-                time.sleep(5)
                 if (loopFlag is False):
                     break
+                else:
+                    time.sleep(5)
         # end while
     except SystemExit:
         print("Exiting")

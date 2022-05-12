@@ -1,0 +1,69 @@
+$ cat /etc/os-release
+PRETTY_NAME="Raspbian GNU/Linux 11 (bullseye)"
+NAME="Raspbian GNU/Linux"
+VERSION_ID="11"
+VERSION="11 (bullseye)"
+VERSION_CODENAME=bullseye
+
+
+
+Raspberry Pi Benchmark Test
+Author: AikonCWD
+Version: 3.0
+
+temp=40.4'C
+arm_freq=1800
+core_freq=500
+core_freq_min=200
+gpu_freq=500
+gpu_freq_min=250
+sd_clock=50.000 MHz
+
+Running InternetSpeed test...
+Ping: 48.043 ms
+Download: 35.57 Mbit/s
+Upload: 11.62 Mbit/s
+
+Running CPU test...
+WARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.
+ total time: 10.0022s
+ min: 3.12
+ avg: 3.15
+ max: 7.01
+temp=49.6'C   +9C
+
+Running THREADS test...
+WARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.
+ total time: 10.0055s
+ min: 9.75
+ avg: 9.95
+ max: 22.03
+temp=50.1'C  +0.5C more
+
+Running MEMORY test...
+WARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.
+3072.00 MiB transferred (2083.92 MiB/sec)
+ total time: 1.4679s
+ min: 0.00
+ avg: 0.00
+ max: 3.50
+temp=51.1'C  +1C more  or +10.7C total
+
+Running HDPARM test...
+ Timing buffered disk reads: 132 MB in  3.02 seconds =  43.67 MB/sec
+temp=43.8'C  
+
+Running DD WRITE test...
+536870912 bytes (537 MB, 512 MiB) copied, 24.9964 s, 21.5 MB/s
+temp=42.3'C
+
+Running DD READ test...
+536870912 bytes (537 MB, 512 MiB) copied, 11.9018 s, 45.1 MB/s
+temp=41.3'C
+
+# EVALUATION
+CARL in robot test showed +18C
+PiBE32 in "HeatSink Case" test showed +11C  
+- 28% faster CPU
+- 58% faster thread test
+- 13% faster mem test

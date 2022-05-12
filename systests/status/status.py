@@ -41,6 +41,10 @@ def getCPUtemperature():
     res = os.popen('vcgencmd measure_temp').readline()
     return(res.replace("temp=", "").replace("\n", ""))
 
+# Return memory and swap
+def getFree():
+    res = os.popen('free -m').read()
+    return res
 
 # Return Clock Freq as a character string
 def getClockFreq():
@@ -69,12 +73,12 @@ def getUptime():
     return res.replace("\n", "")
 
 def printStatus():
-    print("\n********* Pi4BE32 Basic STATUS *****")
+    print("\n********* Pi4BE32 Basic STATUS ******")
     print("{} {}".format(datetime.now().date(), getUptime()))
     print("Processor Temp: %s" % getCPUtemperature())
     print("Clock Frequency: %s" % getClockFreq())
     print("%s" % getThrottled())
-
+    print("Memory: ", getFree()[9:])
 
 # ##### MAIN ######
 
@@ -97,10 +101,11 @@ def main():
 
     try:
         while True:
-                time.sleep(5)
                 printStatus()
                 if (loopFlag is False):
                     break
+                else:
+                    time.sleep(5)
         # end while
     except SystemExit:
         print("Exiting")

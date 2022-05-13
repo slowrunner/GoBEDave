@@ -9,11 +9,13 @@ from time import sleep
 
 led = PWMLED(21)
 
-
-while True:
-    for i in range(0,100,10):
-        led.value = i/100.0
-        sleep(.01)
-    for i in range(100,0,-10):
-        led.value = i/100.0
-        sleep(.01)
+try:
+    while True:
+        for i in range(0,100,10):
+            led.value = i/100.0
+            sleep(.01)
+        for i in range(100,0,-10):
+            led.value = i/100.0
+            sleep(.01)
+except KeyboardInterrupt:
+    pass

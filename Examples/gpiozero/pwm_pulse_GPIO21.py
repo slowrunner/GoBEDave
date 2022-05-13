@@ -10,7 +10,8 @@ from signal import pause
 led = PWMLED(21)
 
 led.pulse()
-
-pause()
-
+try:
+    pause()
+except KeyboardInterrupt:
+    pass
 

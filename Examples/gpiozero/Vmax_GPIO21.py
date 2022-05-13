@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-# Stimulate GPIO21 with with/without DC block to detect DC voltage and ripple
+# Stimulate GPIO21 to max voltage 
+# Measure with with/without DC block to detect DC voltage and ripple
 # C= .01 uF in series with red probe
-# 0.5 generates a 1.65V average with ?v ripple
-# 0.2 generates about 677-mV DC with ?V indicated ripple
+# led.value=1.0 generates a 3.3V DC with 10mVp-p ripple
 #
 
 # REF: https://gpiozero.readthedocs.io/en/stable/recipes.html
@@ -13,7 +13,7 @@ from time import sleep
 
 led = PWMLED(21)
 
-led.value = 0.3
+led.value = 1.0
 try:
     while True:
         sleep(.1)

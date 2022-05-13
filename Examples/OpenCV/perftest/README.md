@@ -6,7 +6,7 @@ test1.py:
   - CodeTimer for 1 execution  
   - datetime on 10 executions  
 
-Pi4B 2GB - OpenCV 4.5.5 - Python3.9:     306ms 3.3 FPS  
+Pi4B 2GB - OpenCV 4.5.5 - Python3.9.2:   306ms 3.3 FPS  
 (built from sources, load 0.08 )  
  
 Pi3B 1GB - OpenCV 4.1.1 - Python3.7.3:   686ms 1.4 FPS  

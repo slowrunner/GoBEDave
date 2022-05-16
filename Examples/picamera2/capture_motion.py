@@ -1,9 +1,13 @@
 #!/usr/bin/python3
 
+# Modified to write motion files to ./captures/capture_YYYYMMDD-HHMMSS.h264
+
 import time
 from signal import pause
+import os
 
 import numpy as np
+from datetime import datetime
 
 from picamera2.encoders import H264Encoder
 from picamera2.outputs import FileOutput
@@ -23,6 +27,9 @@ prev = None
 encoding = False
 ltime = 0
 
+if not os.path.exists('captures'):
+    os.makedirs('captures')
+
 while True:
     cur = picam2.capture_buffer("lores")
     cur = cur[:w*h].reshape(h, w)
@@ -32,7 +39,9 @@ while True:
         mse = np.square(np.subtract(cur, prev)).mean()
         if mse > 7:
             if not encoding:
-                encoder.output = FileOutput("{}.h264".format(int(time.time())))
+                # encoder.output = FileOutput("{}.h264".format(int(time.time())))
+                fname = "captures/capture_"+datetime.now().strftime("%Y%m%d-%H%M%S")
+                encoder.output = FileOutput("{}.h264".format(fname))
                 picam2.start_encoder()
                 encoding = True
                 print("New Motion", mse)

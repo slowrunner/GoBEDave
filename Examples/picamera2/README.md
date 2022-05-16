@@ -30,6 +30,12 @@ python3 opencv_face_detect.py
 opencv_face_detect_2.py: Demonstrates a low resolution stream feeding OpenCV Haar Cascade face detection
 wget https://raw.githubusercontent.com/raspberrypi/picamera2/main/examples/opencv_face_detect_2.py
 python3 opencv_face_detect_2.py
+
+tensorflow/real_time_with_lables.py:  shows COCO object set recognition
+cd tensorflow
+./real_time_with_labels.py --model mobilenet_v2.tflite --label coco_labels.txt
+or
+./real_time.py --model mobilenet_v2.tflite --label coco_labels.txt
 ```
 
 Examples w/o preview (no window server required):

@@ -12,7 +12,10 @@ from picamera2 import Picamera2, Preview, MappedArray
 # and delegate the face box drawing to its callback function, thereby running the
 # preview at the full rate with face updates as and when they are ready.
 
-face_detector = cv2.CascadeClassifier("/usr/share/opencv4/haarcascades/haarcascade_frontalface_default.xml")
+# face_detector = cv2.CascadeClassifier("/usr/share/opencv4/haarcascades/haarcascade_frontalface_default.xml")
+
+# Installed OpenCV 4.5.5 from sources - templates are in /usr/local/share instead of /usr/share as expected
+face_detector = cv2.CascadeClassifier("/usr/local/share/opencv4/haarcascades/haarcascade_frontalface_default.xml")
 
 
 def draw_faces(request):

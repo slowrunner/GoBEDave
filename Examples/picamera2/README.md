@@ -47,5 +47,11 @@ capture_motion.py:  Record 2 second h264 video triggered by motion w/o preview w
 wget https://raw.githubusercontent.com/raspberrypi/picamera2/main/examples/capture_motion.py
 python3 capture_motion.py
 
+snapJPG2.py:  Captures 320x240 image to ./image/<arg1> or   
+              to ./images/capture_YYYY-MM-DD_HH-MM-SS.jpg if no arg1  
+              (no preview)  
+./snapJPG2.py
+
+
 ```
 

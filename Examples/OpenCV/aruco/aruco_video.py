@@ -17,6 +17,7 @@ import cv2
 import sys
 import time
 from picamera2 import Picamera2
+from datetime import datetime
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
@@ -82,6 +83,9 @@ time.sleep(2.0)
 while True:
 	# grab the frame from the threaded video stream and resize it
 	# to have a maximum width of 1000 pixels
+	# Slow it down to control processor load
+	time.sleep(0.1)
+	start = datetime.now()
 	colorframe = picam2.capture_array()
 	frame = cv2.cvtColor(colorframe, cv2.COLOR_BGR2GRAY)
 	# frame = imutils.resize(frame, width=1000)
@@ -90,6 +94,7 @@ while True:
 	(corners, ids, rejected) = cv2.aruco.detectMarkers(frame,
 		arucoDict, parameters=arucoParams)
 
+	end = datetime.now()
 	# verify *at least* one ArUco marker was detected
 	if len(corners) > 0:
 		# flatten the ArUco IDs list
@@ -122,8 +127,9 @@ while True:
 				(topLeft[0], topLeft[1] - 15),
 				cv2.FONT_HERSHEY_SIMPLEX,
 				0.5, (255, 0, 0), 2)
-
-			print("Marker: {} at [{}, {}]".format(str(markerID), cX, cY))
+			tDetect_ms = (end - start).total_seconds()*1000
+			fps = 1000.0/tDetect_ms
+			print("Marker: {} at [{}, {}] {:.0f} ms {:.1f} FPS".format(str(markerID), cX, cY, tDetect_ms, fps ))
 
 	# show the output frame
 	cv2.imshow("Frame", colorframe)

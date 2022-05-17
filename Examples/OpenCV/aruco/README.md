@@ -11,4 +11,6 @@ Requires:
 ./aruco_image.py --image images/ArUco_4x4.jpg --type DICT_4X4_50  
 ./aruco_image.py --image images/ArUco_6x6.jpg --type DICT_6X6_50  
 
+./aruco_video.py --type DICT_4X4_50
+./aruco_video.py --type DICT_6X6_50
 ```

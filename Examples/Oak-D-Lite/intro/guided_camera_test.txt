@@ -1,0 +1,98 @@
+$ python3 guided_manual_test.py 
+Starting manual test procedure. Press the [ESC] key to abort.
+Using depthai module from:  /home/pi/.local/lib/python3.7/site-packages/depthai.cpython-37m-arm-linux-gnueabihf.so
+Depthai version installed:  2.13.3.0
+libEGL warning: DRI2: failed to authenticate
+qt5ct: using qt5ct plugin
+Setting up demo...
+Available devices:
+[0] 184430101175A41200 [X_LINK_UNBOOTED]
+Floating point exception
+Error while running demo script... Command '"/usr/bin/python3" depthai_demo.py -dev 184430101175A41200 --noSupervisor --guiType qt' returned non-zero exit status 136.
+Waiting 5s for the device to be discoverable again...
+Setting up demo...
+Available devices:
+[0] 184430101175A41200 [X_LINK_UNBOOTED]
+USB Connection speed: UsbSpeed.HIGH
+Enabling low-bandwidth mode due to low USB speed... (speed: UsbSpeed.HIGH)
+Creating MJPEG link for ColorCamera node and color xlink stream...
+Stopping demo...
+=== TOTAL FPS ===
+[color]: 3.4
+[disparity]: 3.4
+[disparityColor]: 3.4
+[nn]: 3.5
+...
+
+
+
+$ ps -ef | grep X
+root       550   515  0 09:46 tty7     00:00:24 /usr/lib/xorg/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+pi        1743   622  0 10:03 ?        00:00:00 /usr/bin/lxsession -s LXDE-pi -e LXDE
+pi        1807  1743  0 10:03 ?        00:00:03 lxpanel --profile LXDE-pi
+pi        1808  1743  0 10:03 ?        00:00:01 pcmanfm --desktop --profile LXDE-pi
+pi        3863  1999  0 10:35 pts/1    00:00:00 grep --color=auto X
+
+
+
+
+Other Features Test
+...
+Error while running demo script... Command '"/usr/bin/python3" depthai_demo.py -dev 184430101175A41200 -sync -s left right color nnInput depth --noSupervisor --guiType qt' returned non-zero exit status 136.
+Waiting 5s for the device to be discoverable again...
+Setting up demo...
+Available devices:
+[0] 184430101175A41200 [X_LINK_UNBOOTED]
+USB Connection speed: UsbSpeed.HIGH
+Enabling low-bandwidth mode due to low USB speed... (speed: UsbSpeed.HIGH)
+Creating MJPEG link for MonoCamera node and left xlink stream...
+Creating MJPEG link for MonoCamera node and right xlink stream...
+Stopping demo...
+=== TOTAL FPS ===
+[left]: 0.0
+[right]: 0.0
+[color]: 0.0
+[nnInput]: 0.0
+[depthRaw]: 0.0
+[depth]: 0.0
+[nn]: 0.0
+
+
+Traceback (most recent call last):
+  File "depthai_demo.py", line 991, in <module>
+    runOpenCv()
+  File "depthai_demo.py", line 981, in runOpenCv
+    demo.run_all(confManager)
+  File "depthai_demo.py", line 119, in run_all
+    self.run()
+  File "depthai_demo.py", line 328, in run
+    self.loop()
+  File "depthai_demo.py", line 402, in loop
+    self._nnManager.draw(self._pv, self._nnData)
+  File "/home/pi/GoPiLgc/Examples/Oak-D-Lite/intro/depthai/depthai_sdk/src/depthai_sdk/managers/nnet_manager.py", line 310, in draw
+    drawDetection(frame, detection)
+  File "/home/pi/GoPiLgc/Examples/Oak-D-Lite/intro/depthai/depthai_sdk/src/depthai_sdk/managers/nnet_manager.py", line 281, in drawDetection
+    bbox = frameNorm(self._normFrame(frame), [detection.xmin, detection.ymin, detection.xmax, detection.ymax])
+  File "/home/pi/GoPiLgc/Examples/Oak-D-Lite/intro/depthai/depthai_sdk/src/depthai_sdk/utils.py", line 30, in frameNorm
+    normVals[::2] = frame.shape[1]
+IndexError: tuple index out of range
+Traceback (most recent call last):
+  File "/home/pi/GoPiLgc/Examples/Oak-D-Lite/intro/depthai/depthai_demo.py", line 1004, in <module>
+    s.runDemo(args)
+  File "/home/pi/GoPiLgc/Examples/Oak-D-Lite/intro/depthai/depthai_helpers/supervisor.py", line 46, in runDemo
+    subprocess.check_call(' '.join([f'"{sys.executable}"', "depthai_demo.py"] + new_args), env=new_env, shell=True, cwd=repo_root)
+  File "/usr/lib/python3.7/subprocess.py", line 347, in check_call
+    raise CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command '"/usr/bin/python3" depthai_demo.py -dev 184430101175A41200 -sync -s left right color nnInput depth --noSupervisor --guiType cv' returned non-zero exit status 1.
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Traceback (most recent call last):
+  File "guided_manual_test.py", line 282, in <module>
+    test_other()
+  File "guided_manual_test.py", line 247, in test_other
+    subprocess.check_call([*demo_call, "-sync", "-s", "left", "right", "color", "nnInput", "depth"])
+  File "/usr/lib/python3.7/subprocess.py", line 347, in check_call
+    raise CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command '['/usr/bin/python3', '/home/pi/GoPiLgc/Examples/Oak-D-Lite/intro/depthai/depthai_demo.py', '-dev', '184430101175A41200', '-sync', '-s', 'left', 'right', 'color', 'nnInput', 'depth']' returned non-zero exit status 1.
+

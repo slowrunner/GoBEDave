@@ -73,7 +73,7 @@ def getUptime():
     return res.replace("\n", "")
 
 def printStatus():
-    print("\n********* Pi4BE32 Basic STATUS ******")
+    print("\n********* GoBEDave Basic STATUS ******")
     print("{} {}".format(datetime.now().date(), getUptime()))
     print("Processor Temp: %s" % getCPUtemperature())
     print("Clock Frequency: %s" % getClockFreq())

@@ -1,4 +1,4 @@
-# Pi4BE32
+# GoBEDave
 GoPiGo3 and OpenCV on PiOS Bullseye 32-bit for a Raspberry Pi 4B with 2GB RAM  
 
 - Unofficial exploration of GoPiGo3 API on PiOS 32-bit Bullseye  
